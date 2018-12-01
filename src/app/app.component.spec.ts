@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'iot-lux'`, () => {
+  it(`should have as title 'iot-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('iot-lux');
+    expect(app.title).toEqual('iot-frontend');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to iot-lux!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to iot-frontend!');
   });
 });

@@ -1,0 +1,103 @@
+<!-- <nav class="navbar navbar-light mb-5 navbar-expand-sm navbar-toggler">
+  <a class="navbar-brand" href="/">Angular & Bootstrap</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home</a>
+      <a class="nav-item nav-link" href="#">About</a>
+      <a class="nav-item nav-link" href="#">Contact</a>
+    </div>
+  </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
+        <i class="fa fa-medium"></i>
+      </a>
+    </div>
+  </div>
+</nav> -->
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">IOT Project</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        </div>
+      </li>
+
+      <li *ngFor="let room of rooms"
+            class="nav-iten" href="#"> {{room.description}}
+      </li>
+  
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
+    </form>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">IOT Project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+
+
+      
+
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+        <div class="dropdown-menu open" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
+          <a class="dropdown-item" routerLink="/users">Users</a>
+          <a class="dropdown-item" routerLink="/rooms">Rooms</a>
+          <a class="dropdown-item" routerLink="/devices">Devices</a>
+
+          <!-- <a class="dropdown-item" href="#">Separated link</a> -->
+        </div>
+      </li>
+      
+    
+
+      <li *ngFor="let room of rooms" class="nav-item">
+          <a class="nav-link" routerLink="/rooms/{{room.id}}">{{room.name}}</a>
+      </li>
+
+      
+    </ul>
+     <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button> -->
+     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+    
+  </div>
+</nav>
+
+
+
+
+
+
