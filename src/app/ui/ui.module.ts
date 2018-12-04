@@ -12,11 +12,12 @@ import { DeviceDetailsComponent } from './device-details/device-details.componen
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
  
 
 @NgModule({
   imports: [ CommonModule, AppRoutingModule, FormsModule],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UsersComponent, RoomsComponent, AdminComponent, DevicesComponent, DeviceTypesComponent, DeviceDetailsComponent, RoomdetailsComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UsersComponent, RoomsComponent, AdminComponent, DevicesComponent, DeviceTypesComponent, DeviceDetailsComponent, RoomdetailsComponent, UserDetailsComponent],
   exports: [LayoutComponent, UsersComponent]
 })
 export class UiModule { }

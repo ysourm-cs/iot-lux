@@ -1,5 +1,4 @@
 
-
 <h1>Users List</h1>
 
 <div class="container">
@@ -9,14 +8,22 @@
     <th>Name</th>
     <th>Last Name</th>
     <th>Email</th>
+    <th>Role</th>
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let user of users">
+  <tr class="table-secondary" *ngFor="let user of users">
       <td>{{user.name}}</td>
       <td>{{user.surname }}</td>
       <td>{{user.email}}</td>
+      <td>{{user.role?.description}}</td>
+      <td><button class="btn btn-secondary btn-sm" (click)="editUser(user.id)">Edit </button></td>
+      <td><button class="btn btn-secondary btn-sm" (click)="deleteUser(user.id)">Delete</button></td>
   </tr>
 </tbody>
 </table>  
+</div>
+
+<div>
+  <button class="btn btn-sm" (click)="addNewUser()">Add New</button>
 </div>

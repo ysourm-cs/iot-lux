@@ -7,6 +7,10 @@ export class User {
     password : string;
     role : Role;
     
+    constructor(id : number, description : string) {
+
+    }
+
 }
 
 export class Role {
