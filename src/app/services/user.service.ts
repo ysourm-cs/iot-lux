@@ -45,5 +45,5 @@ export class UserService {
     console.log('getUserRoles() called')
     return this.httpClient.get<Role[]>(this.USER_ROLE_URL);
   }
-
+  
  }

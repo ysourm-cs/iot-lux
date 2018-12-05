@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  constructor(private userService : UserService, 
+  constructor(private userService : UserService,
             private route : ActivatedRoute,
           private router : Router) { }
 
@@ -39,8 +39,8 @@ roleSelected : number;
 
     if (this.id === -1) {
       this.userService.addNew(this.user).subscribe(result=> {
-          console.log(result);
-          
+          console.log(result);  
+
       });
 
     } else {
