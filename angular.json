@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "iot-lux": {
+    "iotsite": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/iot-lux",
+            "outputPath": "dist/iotsite",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
+            ],  
             "scripts": []
           },
           "configurations": {
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "iot-lux:build"
+            "browserTarget": "iotsite:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "iot-lux:build:production"
+              "browserTarget": "iotsite:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "iot-lux:build"
+            "browserTarget": "iotsite:build"
           }
         },
         "test": {
@@ -102,7 +102,7 @@
         }
       }
     },
-    "iot-lux-e2e": {
+    "iotsite-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -111,11 +111,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "iot-lux:serve"
+            "devServerTarget": "iotsite:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "iot-lux:serve:production"
+              "devServerTarget": "iotsite:serve:production"
             }
           }
         },
@@ -131,5 +131,5 @@
       }
     }
   },
-  "defaultProject": "iot-lux"
+  "defaultProject": "iotsite"
 }
