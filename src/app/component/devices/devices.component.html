@@ -1,0 +1,7 @@
+<ul class="devices">
+  <li *ngFor="let device of devices">
+    <a routerLink="/devices/{{ device.id }}">
+      <span class="badge"> {{ device.id }} </span> {{ device.name }}
+    </a>
+  </li>
+</ul>
