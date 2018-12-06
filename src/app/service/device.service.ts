@@ -1,126 +1,77 @@
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { MessageService } from './message.service';
 import { Device } from '../model/device';
-import { DEVICES } from '../mock/mock-devices';
-import { ROOMS } from '../mock/mock-rooms';
-import { USERS } from '../mock/mock-users';
-
+import { ServicesService } from './services.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceService {
-  private deviceUrl = 'http://localhost:8080/devices';
-  private roomUrl = 'http://localhost:8080/rooms';
-  private userUrl = 'http://localhost:8080/users';
 
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient
-    ) { }
+  constructor(private http: HttpClient,
+              private service: ServicesService) { }
 
   getDevice(id: number): Observable<Device> {
-    // return of(DEVICES[id]);
-    const deviceUrl = `${this.deviceUrl}/${id}`;
+    const deviceUrl = `${this.service.getDeviceUrl()}/${id}`;
     return this.http.get<Device>(deviceUrl)
-      .pipe(catchError(this.handleError<Device>('getDevice', null)));
+      .pipe(catchError(this.service.handleError<any>('getDevice', null)));
   }
   
   getDevices(): Observable<Device[]> {
-    // return of(DEVICES);
-    return this.http.get<Device[]>(this.deviceUrl)
-     .pipe(catchError(this.handleError('getDevices', [])));
+    return this.http.get<Device[]>(this.service.getDeviceUrl())
+     .pipe(catchError(this.service.handleError<any>('getDevices', null)));
   }
 
   updateDevice(device: Device): Observable<any> {
-    // DEVICES[device.id] = device;
-    // return of(DEVICES);
-    return this.http.put(this.deviceUrl, device, httpOptions)
-      .pipe(catchError(this.handleError<any>('updateDevice')));
+    return this.http.put(this.service.getDeviceUrl(), device, httpOptions)
+      .pipe(catchError(this.service.handleError<any>('updateDevice', null)));
   }
 
   deleteDevice(id: number): Observable<any> {
-    // DEVICES.splice(id, 1);
-    // return of(DEVICES);
-    const deviceUrl = `${this.deviceUrl}/${id}`;
+    const deviceUrl = `${this.service.getDeviceUrl()}/${id}`;
     return this.http.delete<any>(deviceUrl)
-      .pipe(catchError(this.handleError<any>('deleteDevice', [])));
+      .pipe(catchError(this.service.handleError<any>('deleteDevice', null)));
   }
 
   openDevice(id: number): Observable<Device> {
-    // DEVICES[id].status = 1;
-    // return of(DEVICES[id]);
-    const deviceUrl = `${this.deviceUrl}/${id}/open`;
+    const deviceUrl = `${this.service.getDeviceUrl()}/${id}/open`;
     return this.http.put<Device>(deviceUrl, id)
-      .pipe(catchError(this.handleError<any>('openDevice', [])));
+      .pipe(catchError(this.service.handleError<any>('openDevice', null)));
   }
 
   closeDevice(id: number): Observable<Device> {
-    // DEVICES[id].status = 0;
-    // return of(DEVICES[id]);
-    const deviceUrl = `${this.deviceUrl}/${id}/close`;
+    const deviceUrl = `${this.service.getDeviceUrl()}/${id}/close`;
     return this.http.put<Device>(deviceUrl, id)
-      .pipe(catchError(this.handleError<any>('closeDevice', [])));
+      .pipe(catchError(this.service.handleError<any>('closeDevice', null)));
   }
 
   openAllDevices(id: number): Observable<Device[]> {
-    var i;
-    // for (i=0; i<ROOMS[id].devices.length; i++) {
-    //   ROOMS[id].devices[i].status = 1;
-    // }
-    // return of(ROOMS[id].devices);
-    const url = `${this.roomUrl}/${id}/open`;
-    return this.http.put<Device[]>(url,id);
+    const url = `${this.service.getRoomUrl()}/${id}/open`;
+    return this.http.put<Device[]>(url,id)
+      .pipe(catchError(this.service.handleError<any>('openAllDevices', null)));
   }
 
   closeAllDevices(id: number): Observable<Device[]> {
-    // var i;
-    // for (i=0; i<ROOMS[id].devices.length; i++) {
-    //   ROOMS[id].devices[i].status = 0;
-    // }
-    // return of(ROOMS[id].devices);
-    const url = `${this.roomUrl}/${id}/close`;
+    const url = `${this.service.getRoomUrl()}/${id}/close`;
     return this.http.put<Device[]>(url,id)
- 
+      .pipe(catchError(this.service.handleError<any>('closeAllDevices', null)));
   }
 
   getDevicesByUserId(id: number): Observable<Device[]> {
-    // return of(USERS[id].devices);
-    const url = `${this.userUrl}/${id}/devices`;
+    const url = `${this.service.getUserUrl}/${id}/devices`;
     return this.http.get<Device[]>(url)
-      .pipe(catchError(this.handleError<any>('getDevicesByUserID', [])));
+      .pipe(catchError(this.service.handleError<any>('getDevicesByUserID', null)));
   }
 
   getDevicesByRoomId(id: number): Observable<Device[]> {
-    // return of(ROOMS[id].devices);
-    const url = `${this.roomUrl}/${id}/devices`;
+    const url = `${this.service.getRoomUrl}/${id}/devices`;
     return this.http.get<Device[]>(url)
-     .pipe(catchError(this.handleError('getDevices', [])));
-  }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-  */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      // this.log(`${operation} failed: ${error.message}`);
-
-     // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+     .pipe(catchError(this.service.handleError<any>('getDevices', null)));
   }
 }

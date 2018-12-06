@@ -12,6 +12,9 @@ import { UserDetailComponent } from './detail/user-detail/user-detail.component'
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -24,12 +27,15 @@ import { AppRoutingModule } from './app-routing.module';
     UserDetailComponent,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AdminModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

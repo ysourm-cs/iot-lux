@@ -13,7 +13,6 @@ export class DevicesComponent implements OnInit {
   constructor(private deviceService: DeviceService) { }
 
   getDevices(): void {
-    console.log('Hello');
     this.deviceService.getDevices()
       .subscribe(devices => this.devices = devices);
   }
