@@ -1,0 +1,13 @@
+
+<h1>Room Details</h1>
+<div class="container">
+  <fieldset class="form-group">
+    <label>Description</label>
+    <input type="text" [(ngModel)]="room.name" class="form-control" name="name" required="required">
+  </fieldset>
+
+</div>
+
+<div>
+    <button class="button btn btn-sm" (click)="saveRoom()">Save</button>
+</div>

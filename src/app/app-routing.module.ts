@@ -8,20 +8,24 @@ import { RoomsComponent } from './ui/rooms/rooms.component';
 import { DevicesComponent } from './ui/devices/devices.component';
 import { DeviceTypesComponent } from './ui/device-types/device-types.component';
 import { DeviceDetailsComponent } from './ui/device-details/device-details.component';
-import { RoomdetailsComponent } from './ui/roomdetails/roomdetails.component';
 import { LoginGuard } from './guards/login.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { RoomsTopComponent } from './ui/rooms-top/rooms-top.component';
+import { RoomDetailComponent } from './ui/room-detail/room-detail.component';
+import { RoomAdminListComponent } from './ui/room-admin-list/room-admin-list.component';
+import { RoomAdminDetailComponent } from './ui/room-admin-detail/room-admin-detail.component';
 
 
 const routes: Routes = [
     { path:'', component : AdminComponent},
     { path:'login', component: LoginComponent},
-    { path:'admin', component: AdminComponent, canActivate : [AdminGuard]},
+    { path:'admin', component: AdminComponent, canActivate : [AdminGuard, LoginGuard]},
     { path:'users', component  : UsersComponent, canActivate : [LoginGuard]},
-    { path:'users/:id', component : UserDetailsComponent},
+    { path:'users/:id', component : UserDetailsComponent, canActivate : [LoginGuard]},
+    { path:'rooms-admin', component : RoomAdminListComponent, canActivate : [AdminGuard]},
+    { path:'rooms-admin/:id', component : RoomAdminDetailComponent, canActivate : [AdminGuard]},
     { path:'rooms', component : RoomsTopComponent, canActivate : [LoginGuard]},
-    { path:'rooms/:id', component : RoomdetailsComponent, canActivate : [LoginGuard]},
+    { path:'rooms/:id', component : RoomDetailComponent , canActivate : [LoginGuard]},
     { path:'devices', component : DevicesComponent, canActivate: [LoginGuard]},
     { path:'devices/:id', component : DeviceDetailsComponent, canActivate : [LoginGuard]},
     { path:'types', component : DeviceTypesComponent, canActivate : [LoginGuard]}

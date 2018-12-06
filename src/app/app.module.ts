@@ -10,12 +10,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpIntercepterBasicAuthService } from './services/http-intercepter-basic-auth.service';
 import { RouterModule } from '@angular/router';
+import { RoomAdminListComponent } from './ui/room-admin-list/room-admin-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RoomAdminListComponent
   ],
   imports: [
     BrowserModule,

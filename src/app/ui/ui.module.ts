@@ -11,15 +11,16 @@ import { DeviceTypesComponent } from './device-types/device-types.component';
 import { DeviceDetailsComponent } from './device-details/device-details.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
+import { RoomDetailComponent  } from './room-detail/room-detail.component';
 import { RoomsTopComponent } from './rooms-top/rooms-top.component';
 import { RoomsMenuComponent } from './rooms-menu/rooms-menu.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { RoomAdminDetailComponent } from './room-admin-detail/room-admin-detail.component';
  
 
 @NgModule({
   imports: [ CommonModule, AppRoutingModule, FormsModule],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UsersComponent, RoomsComponent, AdminComponent, DevicesComponent, DeviceTypesComponent, DeviceDetailsComponent, RoomdetailsComponent, RoomsTopComponent, RoomsMenuComponent, UserDetailsComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UsersComponent, RoomsComponent, AdminComponent, DevicesComponent, DeviceTypesComponent, DeviceDetailsComponent, RoomDetailComponent , RoomsTopComponent, RoomsMenuComponent, UserDetailsComponent, RoomAdminDetailComponent],
   exports: [LayoutComponent, UsersComponent]
 })
 export class UiModule { }

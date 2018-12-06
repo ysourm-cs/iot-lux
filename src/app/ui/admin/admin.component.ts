@@ -9,26 +9,26 @@ import { Router } from '../../../../node_modules/@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
 
-  clickRooms() {
-   console.log("Rooms clicked!")
-    this.router.navigate(['rooms']);
-  }
+  // clickRooms() {
+  //  console.log("Rooms clicked!")
+  //   this.router.navigate(['rooms-admin']);
+  // }
 
-  clickDevices() {
-    //console.log("Devices clicked!")
-    this.router.navigate(['devices']);
-  }
+  // clickDevices() {
+  //   //console.log("Devices clicked!")
+  //   this.router.navigate(['devices']);
+  // }
 
-  clickUsers() {
-   // console.log("Users clicked!")
-    this.router.navigate(['users']);
-  }
+  // clickUsers() {
+  //  // console.log("Users clicked!")
+  //   this.router.navigate(['users']);
+  // }
 
 
 }

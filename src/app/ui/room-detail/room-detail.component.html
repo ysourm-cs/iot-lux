@@ -1,0 +1,19 @@
+<div *ngIf="room">
+  <h2>{{ room.name }} Details</h2>
+  <div> <span> id: </span> {{room.id}} </div>
+    There Lies the Info of the Room
+</div>
+
+<ul class="devices">
+  <ul *ngFor="let device of devices">
+    <a routerLink="/devices/{{ device.id }}">
+      <span class="badge"> {{ device.id }} </span> {{ device.name }} {{ device.status }}
+    </a>
+      <div><button class="btn btn-sm" (click)="openDevice(device.id)"> Open </button> </div>
+      <div><button class="btn btn-sm" (click)="closeDevice(device.id)"> Close </button> </div>
+  </ul>
+</ul>
+
+<button class="btn btn-sm" (click)="openAllDevices()">Open All Devices</button> <br>
+<button class="btn btn-sm" (click)="closeAllDevices()">Close All Devices</button> <br>
+<button class="btn btn-sm" (click)="goBack()">go back</button>

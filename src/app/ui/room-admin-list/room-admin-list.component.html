@@ -1,0 +1,30 @@
+
+
+
+
+<h1>Rooms List</h1>
+
+<div class="container">
+<table class="table">
+<thead>
+  <tr>
+    <th>Id</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr class="table-secondary" *ngFor="let room of rooms" >
+      <td>{{room.id}}</td>
+      <td>{{room.name }}</td>
+      <td><button class="btn btn-secondary btn-sm" (click)="editRoom(room.id)">Edit </button></td>
+      <td><button class="btn btn-secondary btn-sm" (click)="deleteRoom(room.id)">Delete</button></td>
+  </tr>
+</tbody>
+</table>  
+</div>
+
+<div>
+  <button class="btn btn-sm" (click)="addNewRoom()">Add New</button>
+</div>

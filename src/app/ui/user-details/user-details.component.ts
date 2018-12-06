@@ -16,7 +16,7 @@ export class UserDetailsComponent implements OnInit {
 
   user : User;
 
-  role : Role[];
+  roles : Role[];
 
   id : number;
 
@@ -32,7 +32,7 @@ roleSelected : number;
           this.user=result;
         });
       }
-      this.userService.getUserRole().subscribe(result2=>this.role=result2);
+      this.userService.getUserRole().subscribe(result2=>this.roles=result2);
   }
 
   saveUser() {
@@ -40,19 +40,25 @@ roleSelected : number;
     if (this.id === -1) {
       this.userService.addNew(this.user).subscribe(result=> {
           console.log(result);  
-
+          this.router.navigate(['users']);
       });
 
     } else {
-      this.userService.update(this.user).subscribe(result=>this.user = result);
+      this.userService.update(this.user).subscribe(result=>{
+        this.user = result;
+        this.router.navigate(['users']);
+      })
     }
 
-    this.router.navigate(['users']);
+  
+  }
+
+  roleComparator(a,b) {
+    if (a==undefined || b==undefined) return false;
+
+    return a.id === b.id;
 
   }
 
-
-  onRoleSelected(val:Role) {
-    console.log(val);
-  }
 }
+ 

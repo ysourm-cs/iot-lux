@@ -22,12 +22,12 @@
 
   <fieldset class="form-group">
     <label>Role</label>
-    <select class="form-control" [(ngModel)]="user.role" value="user.role">
-      <option *ngFor="let role of roles" [ngValue]="role"> {{ role.description }}</option>
+    <select class="form-control" [(ngModel)]="user.role" value="user.role"  [compareWith]="roleComparator">
+      <option *ngFor="let role of roles" [ngValue]="role"> {{ role.name }}</option>
     </select>
   </fieldset>
 </div>
 
 <div>
-  <button class="button btn btn" (click)="saveUser()">Save</button>
+  <button class="button btn btn-sm" (click)="saveUser()">Save</button>
 </div>

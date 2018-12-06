@@ -28,12 +28,8 @@ export class UserService {
     return this.httpClient.post<User>(this.USERS_URL, user);
   }
 
-  delete(id : number) {
-    this.httpClient.delete(this.USERS_URL+id).subscribe(
-     response => {
-       console.log("delete ok", response);
-     }
-    )
+  delete(id : number) : Observable<User>  {
+    return this.httpClient.delete<User>(this.USERS_URL+id);
   } 
 
   update( user : User ) : Observable<User> {

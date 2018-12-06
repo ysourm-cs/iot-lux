@@ -30,8 +30,11 @@ export class UsersComponent implements OnInit {
 
   deleteUser(id : number) {
     console.log("Delete user with id ", id );
-    this.userService.delete(id);
-    this.refreshUsers();
+    this.userService.delete(id).subscribe(result=>
+      {
+        this.refreshUsers();
+      });
+    
   }
 
   addNewUser() {

@@ -1,3 +1,6 @@
+import { Device } from "./device";
+import { Room } from "./room";
+
 export class User {
 
     id:number;
@@ -6,6 +9,8 @@ export class User {
     email : string;
     password : string;
     role : Role;
+    devices: Device[];
+    rooms: Room[];
     
     public isAdmin() : boolean {
         return (this.role != null && this.role.name=="ADMIN");
