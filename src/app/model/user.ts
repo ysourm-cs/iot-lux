@@ -7,9 +7,12 @@ export class User {
     password : string;
     role : Role;
     
+    public isAdmin() : boolean {
+        return (this.role != null && this.role.name=="ADMIN");
+    }
 }
 
 export class Role {
     id : number;
-    description : string;
+    name : string;
 }

@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { UiModule } from './ui/ui.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpIntercepterBasicAuthService } from './services/http-intercepter-basic-auth.service';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,10 +20,14 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     UiModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass : HttpIntercepterBasicAuthService, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

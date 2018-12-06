@@ -8,9 +8,19 @@
     <div class="card-columns">
         <div class="card border-dark mb-3" *ngFor="let room of rooms" >
             <div class="card-header">{{room.name}}</div>
-            <img style="height: 200px; width: 100%; display: block;" src="/assets/images/image1.jpg">
+            <img style="height: 200px; width: 100%; display: block;" src="/assets/images/{{room.name}}.jpg" />
             <div class="card-body text-center">
               <p class="card-text">{{room.name}}</p>
+              <!-- <input type="checkbox" name="isOn" [checked]="myStatus" (change)="toggle()" /> -->
+              
+              <!-- <label class="switch">
+                <input type="checkbox" name="isOn" [checked]="myStatus" (change)="toggle()"><input>
+                <span class="slider round"></span>
+              </label> -->
+              
+              
+              
             </div>
         </div>
 </div>
+

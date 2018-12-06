@@ -50,20 +50,34 @@ typeSelected : number;
 
   }
 
+  compareTypes(a, b) {
+    if ((a=== undefined) || (b === undefined )) {
+      return false;
+    }
+
+    return a.id === b.id;
+  }
+
   saveDevice() {
+
+    console.log(this.types);
+    console.log(this.device.type);
 
     if (this.id === -1) {
       this.deviceService.addNew(this.device).subscribe(result=> {
           console.log(result);
+          this.router.navigate(['devices']);
           
       });
 
     } else {
-      this.deviceService.update(this.device).subscribe(result=>this.device = result);
+      this.deviceService.update(this.device).subscribe(result=>{
+        this.device = result;
+        this.router.navigate(['devices']);
+      });
     }
 
-    this.router.navigate(['devices']);
-
+    
   }
 
 

@@ -12,10 +12,16 @@ export class RoomsComponent implements OnInit {
   constructor(private roomService : RoomService) { }
 
   rooms : Room[];
-  
+
+  myStatus = true;
+
   ngOnInit() {
 
     this.roomService.getAllRooms().subscribe(result=> this.rooms = result);
   }
 
+
+  toggle() {
+    console.log("checkbox clicked");
+  }
 }

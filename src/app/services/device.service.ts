@@ -27,12 +27,8 @@ export class DeviceService {
   }
 
   
-  delete(id : number) {
-    this.httpClient.delete(this.DEVICES_URL+id).subscribe(
-     response => {
-       console.log("delete ok", response);
-     }
-    )
+  delete(id : number) : Observable<Device>  {
+    return this.httpClient.delete<Device>(this.DEVICES_URL+id);
   } 
 
   update( device : Device) : Observable<Device> {

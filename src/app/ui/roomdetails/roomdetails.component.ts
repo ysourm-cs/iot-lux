@@ -15,19 +15,32 @@ export class RoomdetailsComponent implements OnInit {
 
   room : Room;
 
+  id: number;
+  private sub: any;
+
   ngOnInit() {
 
-    this.route.params.forEach( params=>{
-      const id= params['id'];
-      this.roomService.getRoom(id).subscribe(result=>this.room=result);
-    }
+      this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id']; // (+) converts string 'id' to a number
+
+      this.roomService.getRoom(this.id).subscribe(result=>this.room=result);
+
+      })
+    // this.route.params.forEach( params=>{
+    //   const id= params['id'];
+    //   this.roomService.getRoom(id).subscribe(result=>this.room=result);
+    // }
       
-    );  
+    // );  
 
 
     // const id = Number(this.route.snapshot.paramMap.get('id'));
     // console.log("id", id);
     // this.roomService.getRoom(id).subscribe(result=>this.room=result);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 

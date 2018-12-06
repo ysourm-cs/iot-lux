@@ -61,37 +61,40 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
+      </li> -->
+      <li *ngIf="this.user && this.user.role.name=='ADMIN'" class="nav-item active">
+        <a class="nav-link" routerLink="/admin">Administration</a>
       </li>
 
-
-      
-
-      <li class="nav-item dropdown" >
+      <!-- <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
         <div class="dropdown-menu open" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
           <a class="dropdown-item" routerLink="/users">Users</a>
           <a class="dropdown-item" routerLink="/rooms">Rooms</a>
           <a class="dropdown-item" routerLink="/devices">Devices</a>
-
-          <!-- <a class="dropdown-item" href="#">Separated link</a> -->
-        </div>
-      </li>
+        </div> 
+      </li>  -->
       
+       <li *ngIf="this.user" class="nav-item active">
+          <a class="nav-link" routerLink="/rooms">Rooms</a>
+        </li>
     
-
-      <li *ngFor="let room of rooms" class="nav-item">
+      <!-- <li *ngFor="let room of rooms" class="nav-item">
           <a class="nav-link" routerLink="/rooms/{{room.id}}">{{room.name}}</a>
-      </li>
+      </li> -->
 
+      
       
     </ul>
      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button> -->
-     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+     <button class="btn btn-secondary" disabled *ngIf="user"><a>{{user.name}}</a></button>
+     <button *ngIf="!this.user"  class="btn btn-secondary my-2 my-sm-0" routerLink="/login">Login</button>
+     <button *ngIf="this.user" class="btn btn-secondary my-2 my-sm-0" (click)="logout()" routerLink="">Logout</button>
     
   </div>
 </nav>

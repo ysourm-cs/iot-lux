@@ -32,8 +32,15 @@ export class DevicesComponent implements OnInit {
 
   deleteDevice(id : number) {
     console.log("Delete device with id ", id );
-    this.deviceService.delete(id);
-    this.refreshDevices();
+
+    //TODO: Switch to subscribe
+    this.deviceService.delete(id).subscribe(
+      result=> {
+        console.log("Device deleted succesfully.");
+        this.refreshDevices();
+      }
+    );
+
   }
 
   addNewDevice() {
