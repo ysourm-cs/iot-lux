@@ -5,12 +5,12 @@
 </div>
 
 <ul class="devices">
-  <ul *ngFor="let device of room.devices">
+  <ul *ngFor="let device of devices">
     <a routerLink="/devices/{{ device.id }}">
       <span class="badge"> {{ device.id }} </span> {{ device.name }} {{ device.status }}
     </a>
-      <div *ngIf="device.status == 0"> <button (click)="openDevice(device.id)"> Open </button> </div>
-      <div *ngIf="device.status == 1"> <button (click)="closeDevice(device.id)"> Close </button> </div>
+      <div> <button (click)="openDevice(device.id)"> Open </button> </div>
+      <div ><button (click)="closeDevice(device.id)"> Close </button> </div>
   </ul>
 </ul>
 

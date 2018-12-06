@@ -15,7 +15,8 @@ import { DeviceService } from 'src/app/service/device.service';
 export class RoomDetailComponent implements OnInit {
   room: Room;
   devices: Device[];
-  
+
+
   constructor(
     private route: ActivatedRoute,
     private roomService: RoomService,
@@ -36,7 +37,9 @@ export class RoomDetailComponent implements OnInit {
   }
 
   getDevicesByRoomId(): void {
-    this.deviceService.getDevicesByRoomId(this.room.id)
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    this.deviceService.getDevicesByRoomId(id)
       .subscribe(devices => this.devices = devices);
   }
 
@@ -51,12 +54,14 @@ export class RoomDetailComponent implements OnInit {
   }
 
   openAllDevices(): void {
-    this.deviceService.openAllDevices(this.room.id)
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.deviceService.openAllDevices(id)
       .subscribe(devices => this.devices = devices);
   }
 
   closeAllDevices(): void {
-    this.deviceService.closeAllDevices(this.room.id)
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.deviceService.closeAllDevices(id)
       .subscribe(devices => this.devices = devices);
   }
 

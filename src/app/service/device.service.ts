@@ -76,7 +76,7 @@ export class DeviceService {
     // }
     // return of(ROOMS[id].devices);
     const url = `${this.roomUrl}/${id}/open`;
-    return this.http.get<Device[]>(url);
+    return this.http.put<Device[]>(url,id);
   }
 
   closeAllDevices(id: number): Observable<Device[]> {
@@ -85,8 +85,9 @@ export class DeviceService {
     //   ROOMS[id].devices[i].status = 0;
     // }
     // return of(ROOMS[id].devices);
-    const url = `${this.roomUrl}/${id}/open`;
-    return this.http.get<Device[]>(url);
+    const url = `${this.roomUrl}/${id}/close`;
+    return this.http.put<Device[]>(url,id)
+ 
   }
 
   getDevicesByUserId(id: number): Observable<Device[]> {
