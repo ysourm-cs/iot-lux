@@ -10,6 +10,10 @@ export class User {
     public isAdmin() : boolean {
         return (this.role != null && this.role.name=="ADMIN");
     }
+    constructor(id : number, description : string) {
+
+    }
+
 }
 
 export class Role {

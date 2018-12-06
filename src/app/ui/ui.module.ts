@@ -14,11 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
 import { RoomsTopComponent } from './rooms-top/rooms-top.component';
 import { RoomsMenuComponent } from './rooms-menu/rooms-menu.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
  
 
 @NgModule({
   imports: [ CommonModule, AppRoutingModule, FormsModule],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UsersComponent, RoomsComponent, AdminComponent, DevicesComponent, DeviceTypesComponent, DeviceDetailsComponent, RoomdetailsComponent, RoomsTopComponent, RoomsMenuComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UsersComponent, RoomsComponent, AdminComponent, DevicesComponent, DeviceTypesComponent, DeviceDetailsComponent, RoomdetailsComponent, RoomsTopComponent, RoomsMenuComponent, UserDetailsComponent],
   exports: [LayoutComponent, UsersComponent]
 })
 export class UiModule { }

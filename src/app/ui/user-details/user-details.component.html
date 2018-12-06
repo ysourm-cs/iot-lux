@@ -1,0 +1,33 @@
+<h1>User Details</h1>
+<div class="container">
+  <fieldset class="form-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="user.name" class="form-control" name="name" required="required">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label>Surname</label>
+    <input type="text" [(ngModel)]="user.surname" class="form-control" name="surname" required="required">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="user.email" class="form-control" name="email" required="required">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label>Password</label>
+    <input type="password" [(ngModel)]="user.password" class="form-control" name="psw" required="required">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label>Role</label>
+    <select class="form-control" [(ngModel)]="user.role" value="user.role">
+      <option *ngFor="let role of roles" [ngValue]="role"> {{ role.description }}</option>
+    </select>
+  </fieldset>
+</div>
+
+<div>
+  <button class="button btn btn" (click)="saveUser()">Save</button>
+</div>
