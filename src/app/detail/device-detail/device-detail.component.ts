@@ -32,12 +32,12 @@ export class DeviceDetailComponent implements OnInit {
 
   openDevice(): void {
     this.deviceService.openDevice(this.device.id)
-      .subscribe(_ => this.device.status = Status.ON);
+      .subscribe(device => this.device = device);
   }
 
   closeDevice(): void {
     this.deviceService.closeDevice(this.device.id)
-      .subscribe(_ => this.device.status = Status.OFF);
+      .subscribe(device => this.device = device);
   }
 
   goBack(): void {

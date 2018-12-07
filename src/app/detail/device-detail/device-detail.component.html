@@ -2,7 +2,7 @@
   <h2> {{ device.name | uppercase }} Details </h2>
   <div><span> id: </span> {{ device.id }} status: {{ device.status }}  </div>
   
-  <ul >
+  <ul>
     <li>
     <button (click)="openDevice(device.id)"> Turn Device On </button>
   </li>
@@ -10,6 +10,5 @@
     <button (click)="closeDevice(device.id)"> Turn Device Off </button>
   </li>
 </ul>
-
 
 <button (click)="goBack()">go back</button>

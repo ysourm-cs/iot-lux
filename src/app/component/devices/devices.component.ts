@@ -17,6 +17,11 @@ export class DevicesComponent implements OnInit {
       .subscribe(devices => this.devices = devices);
   }
 
+  deleteDevice(id: number): void {
+    this.deviceService.deleteDevice(id)
+      .subscribe(_ => { console.log("Device deleted!") });
+  }
+
   ngOnInit() {
     this.getDevices();
   }
