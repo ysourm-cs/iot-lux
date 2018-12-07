@@ -5,7 +5,7 @@ import { ManageDevicesComponent } from './manage-devices/manage-devices.componen
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ManageRoomsComponent } from './manage-rooms/manage-rooms.component';
-import { AuthGuard } from '../auth/auth.guard';
+import { AdminGuard } from '../admin/admin.guard';
 
 const adminRoutes: Routes = [
   {
@@ -14,7 +14,7 @@ const adminRoutes: Routes = [
     children: [
       {
         path: '',
-        canActivateChild: [AuthGuard],
+        canActivateChild: [AdminGuard],
         children: [
           { path: 'devices', component: ManageDevicesComponent },
           { path: 'users', component: ManageUsersComponent },
