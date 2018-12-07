@@ -18,6 +18,7 @@ const routes: Routes = [
       {
         path: ':id',
         component: DeviceDetailComponent,
+        canActivateChild: [AuthGuard]
       }
     ]
   },
@@ -28,7 +29,8 @@ const routes: Routes = [
     children: [
       {
         path: ':id',
-        component: RoomDetailComponent
+        component: RoomDetailComponent,
+        canActivateChild: [AuthGuard]
       }
     ]
   },
