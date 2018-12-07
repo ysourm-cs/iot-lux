@@ -4,7 +4,6 @@ import { Location } from '@angular/common';
 
 import { Device, Status } from 'src/app/model/device';
 import { DeviceService } from 'src/app/service/device.service';
-import { Room } from 'src/app/model/room';
 
 @Component({
   selector: 'app-device-detail',
@@ -40,6 +39,7 @@ export class DeviceDetailComponent implements OnInit {
       .subscribe(device => this.device = device);
   }
 
+  
   goBack(): void {
     this.location.back();
   }
