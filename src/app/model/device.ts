@@ -3,13 +3,13 @@ import { Room } from "./room";
 export class Device {
 
     id : number;
-    description : string;
+    name : string;
     info : string;
     type : DeviceType;
     room : Room;
     status: number;
 
-    constructor(id : number, description : string) {
+    constructor(id : number, name : string) {
 
     }
 

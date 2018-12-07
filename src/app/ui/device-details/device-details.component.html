@@ -1,38 +1,37 @@
 
-<h1>Device Details</h1>
+
 <div class="container">
+  <h3>Device Details</h3>
   <fieldset class="form-group">
     <label>Description</label>
-    <input type="text" [(ngModel)]="device.name" class="form-control" name="name" required="required">
+    <input type="text" [(ngModel)]="device.name" class="form-control form-control-sm" name="name" required="required">
   </fieldset>
 
   <fieldset class="form-group">
       <label>Info</label>
-      <input type="text" [(ngModel)]="device.info" class="form-control" name="name2" required="required">
+      <input type="text" [(ngModel)]="device.info" class="form-control form-control-sm" name="name2" required="required">
     </fieldset>
 
     <fieldset class="form-group">
         <label>Type</label>
-        <select class="form-control" [(ngModel)]="device.type " [compareWith]="compareTypes">
+        <select class="form-control form-control-sm" [(ngModel)]="device.type " [compareWith]="compareTypes">
             <option *ngFor="let type of types"  [ngValue]="type"> {{ type.name }}</option>
         </select>
-
-            </fieldset>
+    </fieldset>
 
     <fieldset class="form-group">
         <label>Room</label>
-        <select type="number" class="form-control" [(ngModel)]="device.room" [compareWith]="compareTypes"  >
+        <select type="number" class="form-control form-control-sm" [(ngModel)]="device.room" [compareWith]="compareTypes"  >
             <option *ngFor="let room of rooms" [ngValue]="room">{{ room.name }}</option>
         </select>
 
     </fieldset>
-
-
+    <div>
+        <button class="button btn btn-sm" (click)="saveDevice()">Save</button>
+    </div>
 </div>
 
-<div>
-    <button class="button btn btn-sm" (click)="saveDevice()">Save</button>
-</div>
+
 
 
 
