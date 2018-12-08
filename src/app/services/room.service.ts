@@ -12,6 +12,8 @@ export class RoomService {
 
   private ROOMS_URL='http://localhost:8080/rooms/';
 
+  private USERS_URL='http://localhost:8080/users/';
+
   getAllRooms() : Observable<Room[]> {
 
       return this.httpClient.get<Room[]>(this.ROOMS_URL);
@@ -34,24 +36,16 @@ export class RoomService {
     return this.httpClient.delete<Room>(this.ROOMS_URL+id);
   }
 
-  openAllDevices(id: number): Observable<Room> {
-    // var i;
-    // for (i=0; i<ROOMS[id].devices.length; i++) {
-    //   ROOMS[id].devices[i].status = 1;
-    // }
-    // return of(ROOMS[id]);
-    const url = `${this.ROOMS_URL}/${id}/open`;
-    return this.httpClient.put<Room>(url, id);
-  }
+  // openAllDevices(userId: number, id: number): Observable<Room> {
+  
+  //   const url = `${this.USERS_URL}/{userId}/rooms/${id}/open`;
+  //   return this.httpClient.put<Room>(url, id);
+  // }
 
-  closeAllDevices(id: number): Observable<Room> {
-    // var i;
-    // for (i=0; i<ROOMS[id].devices.length; i++) {
-    //   ROOMS[id].devices[i].status = 0;
-    // }
-    // return of(ROOMS[id]);
-    const url = `${this.ROOMS_URL}/${id}/close`;
-    return this.httpClient.put<Room>(url, id);
-  }
+  // closeAllDevices(userId: number, id: number): Observable<Room> {
+
+  //   const url = `${this.USERS_URL}/{userId}/rooms/${id}/close`;
+  //   return this.httpClient.put<Room>(url, id);
+  // }
 
 }
