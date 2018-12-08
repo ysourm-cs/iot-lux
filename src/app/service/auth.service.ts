@@ -10,7 +10,7 @@ import { User } from '../model/user';
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn = false;
+  isLoggedIn = true;
   redirectUrl: string;
 
   constructor(private http: HttpClient,
