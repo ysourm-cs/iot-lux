@@ -5,6 +5,8 @@ import { Room } from '../../model/room';
 import { DeviceService } from 'src/app/services/device.service';
 import { Location } from '@angular/common';
 import { Device } from 'src/app/model/device';
+import { UserService } from 'src/app/services/user.service';
+import { UserStateService } from 'src/app/services/user-state.service';
 
 @Component({
   selector: 'app-roomdetails',
@@ -16,6 +18,7 @@ export class RoomDetailComponent implements OnInit {
   constructor(private route : ActivatedRoute,
     private deviceService : DeviceService,
   private roomService : RoomService,
+  private userStateService : UserStateService,
   private location: Location ) { }
 
   room : Room;
@@ -28,7 +31,7 @@ export class RoomDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getRoom();   
-    this.getDevicesByRoomId();
+    this.getDevicesByUserAndRoomId();
   }
 
   getRoom(): void {
@@ -45,6 +48,14 @@ export class RoomDetailComponent implements OnInit {
       .subscribe(devices => this.devices = devices);
   }
 
+  getDevicesByUserAndRoomId() : void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    const userId = this.userStateService.getUser().id;
+    this.deviceService.getDevicesByUserAndRoomId(userId, id)
+      .subscribe(devices => this.devices = devices);
+  }
+
   openDevice(id: number): void {
     this.deviceService.openDevice(id)
       .subscribe(device => this.devices[this.devices.findIndex(value => value.id == id)] = device);
@@ -57,13 +68,15 @@ export class RoomDetailComponent implements OnInit {
 
   openAllDevices(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.deviceService.openAllDevices(id)
+    const userId = this.userStateService.getUser().id;
+    this.deviceService.openAllDevices(userId, id)
       .subscribe(devices => this.devices = devices);
   }
 
   closeAllDevices(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.deviceService.closeAllDevices(id)
+    const userId = this.userStateService.getUser().id;
+    this.deviceService.closeAllDevices(userId, id)
       .subscribe(devices => this.devices = devices);
   }
 

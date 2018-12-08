@@ -56,21 +56,33 @@ export class DeviceService {
       .pipe(catchError(this.handleError<any>('closeDevice', [])));
   }
 
-  openAllDevices(id: number): Observable<Device[]> {
-    const url = `${this.ROOMS_URL}/${id}/open`;
-    return this.httpClient.put<Device[]>(url,id);
+  openAllDevices(userId: number, id: number): Observable<Device[]> {
+  
+    const url = `${this.USERS_URL}/${userId}/rooms/open`;
+    return this.httpClient.put<Device[]>(url, id);
   }
 
-  closeAllDevices(id: number): Observable<Device[]> {
-    // var i;
-    // for (i=0; i<ROOMS[id].devices.length; i++) {
-    //   ROOMS[id].devices[i].status = 0;
-    // }
-    // return of(ROOMS[id].devices);
-    const url = `${this.ROOMS_URL}/${id}/close`;
-    return this.httpClient.put<Device[]>(url,id)
- 
+  closeAllDevices(userId: number, id: number): Observable<Device[]> {
+
+    const url = `${this.USERS_URL}/${userId}/rooms/close`;
+    return this.httpClient.put<Device[]>(url, id);
   }
+
+  // openAllDevices(id: number): Observable<Device[]> {
+  //   const url = `${this.ROOMS_URL}/${id}/open`;
+  //   return this.httpClient.put<Device[]>(url,id);
+  // }
+
+  // closeAllDevices(id: number): Observable<Device[]> {
+  //   // var i;
+  //   // for (i=0; i<ROOMS[id].devices.length; i++) {
+  //   //   ROOMS[id].devices[i].status = 0;
+  //   // }
+  //   // return of(ROOMS[id].devices);
+  //   const url = `${this.ROOMS_URL}/${id}/close`;
+  //   return this.httpClient.put<Device[]>(url,id)
+ 
+  // }
 
   getDevicesByUserId(id: number): Observable<Device[]> {
     // return of(USERS[id].devices);
@@ -84,6 +96,11 @@ export class DeviceService {
     const url = `${this.ROOMS_URL}/${id}/devices`;
     return this.httpClient.get<Device[]>(url)
      .pipe(catchError(this.handleError('getDevices', [])));
+  }
+
+  getDevicesByUserAndRoomId(userId:number, roomId:number) : Observable<Device[]> {
+    const url =  `${this.USERS_URL}/${userId}/room/${roomId}`;
+    return this.httpClient.get<Device[]>(url);
   }
 
   /**
