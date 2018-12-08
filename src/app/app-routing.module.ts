@@ -14,8 +14,6 @@ import { RoomsTopComponent } from './ui/rooms-top/rooms-top.component';
 import { RoomDetailComponent } from './ui/room-detail/room-detail.component';
 import { RoomAdminListComponent } from './ui/room-admin-list/room-admin-list.component';
 import { RoomAdminDetailComponent } from './ui/room-admin-detail/room-admin-detail.component';
-
-
 const routes: Routes = [
     { path:'', component : AdminComponent},
     { path:'login', component: LoginComponent},
@@ -29,10 +27,10 @@ const routes: Routes = [
     { path:'devices', component : DevicesComponent, canActivate: [LoginGuard]},
     { path:'devices/:id', component : DeviceDetailsComponent, canActivate : [LoginGuard]},
     { path:'types', component : DeviceTypesComponent, canActivate : [LoginGuard]}
-];
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
