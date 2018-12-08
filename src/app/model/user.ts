@@ -9,11 +9,13 @@ export class Role {
 export class User {
     id: number;
     name: string;
-    surname:string;
+    surname: string;
     email: string;
     password: string;
     role: Role;
 
     devices: Device[];
     rooms: Room[];
+
+    token?: string;
 }

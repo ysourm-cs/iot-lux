@@ -5,12 +5,16 @@ import { of, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
+  // private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:4200';
   private userUrl = 'http://localhost:8080/users';
   private roomUrl = 'http://localhost:8080/rooms';
   private deviceUrl = 'http://localhost:8080/devices';
 
   constructor() { }
 
+  getApiUrl() { return this.apiUrl; }
+  
   getUserUrl() { return this.userUrl; }
 
   getDeviceUrl() { return this.deviceUrl; }

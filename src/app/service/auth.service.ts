@@ -1,34 +1,43 @@
 import { Injectable } from '@angular/core';
-
-import { Observable, of } from 'rxjs';
-import { tap, delay, map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { ServicesService } from './services.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { User } from '../model/user';
+import { ServicesService } from './services.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  isLoggedIn = true;
-  redirectUrl: string;
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient,
-              private service: ServicesService) { }
+    constructor(private http: HttpClient,
+                private service: ServicesService) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
 
-    login(username: string, password: string): Observable<User> {
-      var user = new User();
-      user.email = username;
-      user.password = password;
-      return this.http.put<User>(`${this.service.getUserUrl}/authenticate`, user)
-        .pipe(catchError(catchError(this.service.handleError<any>('login', null))));
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
+    }
+
+    login(email: string, password: string) {
+        return this.http.post<any>(`${this.service.getApiUrl()}/login`, { email, password })
+            .pipe(map(user => {
+                // login successful if there's a jwt token in the response
+                if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            }));
     }
 
     logout() {
-        // Nothing
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
     }
-
-  getLoggedIn(): boolean {
-    return this.isLoggedIn;
-  }
 }

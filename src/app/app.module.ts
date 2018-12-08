@@ -1,7 +1,7 @@
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DevicesComponent } from './component/devices/devices.component';
@@ -14,7 +14,10 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
-import { AuthModule } from './guards/auth.module';
+import { JwtInterceptor } from './app.interceptor';
+import { LoginComponent } from './component/login/login.component';
+import { ErrorInterceptor } from './error.interceptor';
+import { fakeBackendProvider } from './helper/fake-backend';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { AuthModule } from './guards/auth.module';
     UsersComponent,
     UserDetailComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
@@ -34,9 +38,14 @@ import { AuthModule } from './guards/auth.module';
     AppRoutingModule,
     FormsModule,
     AdminModule,
-    AuthModule
+    ReactiveFormsModule
   ],
-  providers: [],
+  // providers: [ JwtInterceptor, ErrorInterceptor ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

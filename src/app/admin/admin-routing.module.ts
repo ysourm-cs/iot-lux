@@ -5,7 +5,7 @@ import { ManageDevicesComponent } from './manage-devices/manage-devices.componen
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ManageRoomsComponent } from './manage-rooms/manage-rooms.component';
-import { AdminGuard } from '../admin/admin.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 const adminRoutes: Routes = [
   {
