@@ -28,6 +28,11 @@ export class DeviceService {
      .pipe(catchError(this.service.handleError<any>('getDevices', null)));
   }
 
+  addDevice(device: Device): Observable<Device> {
+    return this.http.post<Device[]>(this.service.getDeviceUrl(), device)
+      .pipe(catchError(this.service.handleError<any>('addDevice', null)));
+  }
+
   updateDevice(device: Device): Observable<any> {
     return this.http.put(this.service.getDeviceUrl(), device, httpOptions)
       .pipe(catchError(this.service.handleError<any>('updateDevice', null)));

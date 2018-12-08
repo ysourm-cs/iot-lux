@@ -5,7 +5,7 @@
 </div>
 
 <ul class="devices">
-  <ul *ngFor="let device of devices | async">
+  <ul *ngFor="let device of devices">
     <a routerLink="/devices/{{ device.id }}">
       <span class="badge"> {{ device.id }} </span> {{ device.name }} {{ device.status }}
     </a>

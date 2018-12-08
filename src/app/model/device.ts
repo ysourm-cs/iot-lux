@@ -1,6 +1,13 @@
+import { Room } from './room';
+
 export enum Status {
     OFF = 0,
     ON = 1
+}
+
+export class Type {
+    id: number;
+    name: string;
 }
 
 export class Device {
@@ -8,7 +15,6 @@ export class Device {
     name: string;
     info: string;
     status: number;
-    // type: String;
-    // room: String;
-    // user_ids: number[];
+    type: Type;
+    room: Room;
 }

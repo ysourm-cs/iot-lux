@@ -1,3 +1,54 @@
-<p>
-  user-detail works!
-</p>
+<div class="container">
+<h3>User Details</h3>
+
+  <div class="row">  <!-- Start of first row-->
+
+<div class="col-xs-6 col-sm-6 col-md-6">
+<fieldset class="form-group">
+  <label>Name</label>
+  <input type="text" [(ngModel)]="user.name" class="form-control form-control-sm" name="name" required="required">
+</fieldset>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6">
+<fieldset class="form-group">
+  <label>Surname</label>
+  <input type="text" [(ngModel)]="user.surname" class="form-control form-control-sm" name="surname" required="required">
+</fieldset>
+</div>
+</div> <!-- End of first row-->
+
+<fieldset class="form-group">
+  <div class="form-group">
+    <label for="exampleSelect2">Devices</label>
+    <select multiple="" class="form-control form-control-sm" [(ngModel)]="user.devices" id="exampleSelect2" [compareWith]="roleComparator">
+      <option *ngFor="let mydevice of devices"  [ngValue]="mydevice" >{{mydevice?.room.name}} : {{mydevice.name}}</option>
+    </select>
+  </div>
+</fieldset>
+
+<div class="row">  <!-- Start of email/pass row-->
+  <div class="col-xs-6 col-sm-6 col-md-6">
+<fieldset class="form-group">
+  <label>Email</label>
+  <input type="email" [(ngModel)]="user.email" class="form-control form-control-sm" name="email" required="required">
+</fieldset>
+</div>
+
+<div class="col-xs-6 col-sm-6 col-md-6">
+  <fieldset class="form-group">
+    <label>Password</label>
+    <input type="password" [(ngModel)]="user.password" class="form-control form-control-sm" name="psw" required="required">
+  </fieldset>
+</div>
+</div> <!-- end of email/password row-->
+
+<fieldset class="form-group">
+  <label>Role</label>
+  <select class="form-control form-control-sm" [(ngModel)]="user.role" value="user.role"  [compareWith]="roleComparator">
+    <option *ngFor="let role of roles" [ngValue]="role"> {{ role.name }}</option>
+  </select>
+</fieldset>
+<div>
+    <button class="button btn btn-sm" (click)="saveUser()">Save</button>
+  </div>
+</div>

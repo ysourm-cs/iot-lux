@@ -13,26 +13,26 @@ const routes: Routes = [
   {
     path: 'devices',
     component: DevicesComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { path: 'devices/:id',
     component: DeviceDetailComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'rooms',
     component: RoomsComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'rooms/:id',
     component: RoomDetailComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'profile',
     component: UserDetailComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent }
 ];

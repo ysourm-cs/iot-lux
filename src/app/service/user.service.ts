@@ -14,20 +14,28 @@ export class UserService {
               private service: ServicesService) { }
 
   getUser(id: number): Observable<User> {
-    const url = `${this.service.getUserUrl}/${id}`;
+    const url = `${this.service.getUserUrl()}/${id}`;
     return this.http.get<User>(url)
+      .pipe(catchError(this.service.handleError<User>('getUser', null)));
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.service.getUserUrl())
+      .pipe(catchError(this.service.handleError<User[]>('getUsers', null)));
+  }
+
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(this.service.getUserUrl(), user)
       .pipe(catchError(this.service.handleError<User>('addUser', null)));
   }
 
-  deleteUser(id: number): Observable<void> {
-    const url = `${this.service.getUserUrl}`;
-    return this.http.delete<void>(url)
-      .pipe(catchError(this.service.handleError<any>('deleteUser', null)));
+  updateUser(user: User): Observable<User> {
+    return this.http.post<User>(this.service.getUserUrl(), user)
+      .pipe(catchError(this.service.handleError<any>('updateUser', null)));
   }
 
-  updateUser(user: User): Observable<User> {
-    const url = `${this.service.getUserUrl}`;
-    return this.http.post<User>(url, user)
-      .pipe(catchError(this.service.handleError<any>('updateUser', null)));
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(this.service.getUserUrl())
+      .pipe(catchError(this.service.handleError<any>('deleteUser', null)));
   }
 }

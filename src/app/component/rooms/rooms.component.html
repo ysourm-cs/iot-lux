@@ -1,8 +1,7 @@
 <ul >
-  <div *ngFor="let room of rooms">
-    <div class="module"routerLink="/rooms/{{ room.id }}">
-      <span> {{ room.name }} </span>
+    <div *ngFor="let room of rooms">
+      <div routerLink="/rooms/{{ room.id }}">
+        <span> {{ room.name }} </span>
+      </div>
     </div>
-  </div>
-</ul>
-
+  </ul>

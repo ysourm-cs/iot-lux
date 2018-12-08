@@ -10,30 +10,23 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginComponent {
   message: string;
- 
+  email: string;
+  password: string
+
   constructor(public authService: AuthService,
-              public router: Router) {
-    this.setMessage();
-  }
- 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-  }
+              public router: Router) { }
  
   login(username: string, password: string) {
-    this.message = 'Trying to log in ...';
- 
-    this.authService.login(username, password).subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
-        this.router.navigate([redirect]);
-      }
-    });
+    this.authService.login(username, password)
+      .subscribe( _ => {
+        if (this.authService.isLoggedIn) {
+          let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
+          this.router.navigate([redirect]);
+        }
+      });
   }
  
   logout() {
     this.authService.logout();
-    this.setMessage();
   }
 }

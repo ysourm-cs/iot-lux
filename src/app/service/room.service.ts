@@ -21,7 +21,7 @@ export class RoomService {
   }
 
   getRoom(id: number): Observable<Room> {
-    const url = `${this.service.getRoomUrl()}/${id}/devices`
+    const url = `${this.service.getRoomUrl()}/${id}`
     return this.http.get<Room>(url)
       .pipe(catchError(this.service.handleError<any>('getRoom', null)));
   }
@@ -30,6 +30,11 @@ export class RoomService {
     const url = `${this.service.getRoomUrl()}`;
     return this.http.post<Room>(url, room)
       .pipe(catchError(this.service.handleError<any>('addRoom', null)));
+  }
+
+  updateRoom(room: Room) {
+    return this.http.put<Room>(this.service.getRoomUrl(), room)
+      .pipe(catchError(this.service.handleError<any>('updateRoom', null)));
   }
 
   deleteRoom(id: number): Observable<void> {

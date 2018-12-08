@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { tap, delay, map } from 'rxjs/operators';
+import { tap, delay, map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { ServicesService } from './services.service';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -11,24 +13,19 @@ export class AuthService {
   isLoggedIn = false;
   redirectUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private service: ServicesService) { }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`localhost:8080/users/authenticate`, { username: username, password: password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
-
-                return user;
-            }));
+    login(username: string, password: string): Observable<User> {
+      var user = new User();
+      user.email = username;
+      user.password = password;
+      return this.http.put<User>(`${this.service.getUserUrl}/authenticate`, user)
+        .pipe(catchError(catchError(this.service.handleError<any>('login', null))));
     }
 
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        // Nothing
     }
 
   getLoggedIn(): boolean {
