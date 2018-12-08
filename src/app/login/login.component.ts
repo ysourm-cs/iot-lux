@@ -22,19 +22,26 @@ export class LoginComponent implements OnInit {
   invalidLogin : boolean;
 
   ngOnInit() {
+    this.invalidLogin = false;
   }
 
   handleSimpleLogin() {
     console.log("simpleLogin called");
     this.simpleLoginSrv.login(this.emailaddress, this.pwd).subscribe(
-      result=> {
-        console.log(result);
-        this.userStateService.setUser(result);
-        this.router.navigate(['rooms']);
+      result => {
+        if (result) {
+          console.log(result);
+          this.userStateService.setUser(result);
+          this.router.navigate(['rooms']);
+          this.invalidLogin = false;
+        } else {
+          this.invalidLogin = true;
+        }
       }
     )
   }
 
+  isInvalidLogin() { return this.invalidLogin; }
   handleBasicAuthLogin( ) {
     //console.log("calling login with email " + this.emailaddress);
     this.basicAuthloginSrv.login(this.emailaddress, this.pwd).subscribe(
