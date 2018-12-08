@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from 'src/app/services/room.service';
 import { Room } from 'src/app/model/room';
+import { UserStateService } from 'src/app/services/user-state.service';
 
 @Component({
   selector: 'app-rooms-menu',
@@ -9,13 +10,13 @@ import { Room } from 'src/app/model/room';
 })
 export class RoomsMenuComponent implements OnInit {
 
-  constructor(private roomService : RoomService) { }
+  constructor(private roomService : RoomService,  private userStateService : UserStateService) { }
 
   rooms : Room[];
   
   ngOnInit() {
-
-    this.roomService.getAllRooms().subscribe(result=> this.rooms = result);
+    const userId = this.userStateService.getUser().id;
+    this.roomService.getAllUserRooms(userId).subscribe(result=> this.rooms = result);
   }
 
 }

@@ -15,10 +15,14 @@ export class RoomService {
   private USERS_URL='http://localhost:8080/users/';
 
   getAllRooms() : Observable<Room[]> {
-
       return this.httpClient.get<Room[]>(this.ROOMS_URL);
-
   }
+
+  // /users/{userId}/rooms")
+  getAllUserRooms(userId : number)  : Observable<Room[]> {
+    const url = `${this.USERS_URL}/${userId}/rooms`;
+    return this.httpClient.get<Room[]>(url);
+}
 
   getRoom(id:number) : Observable<Room> {
     return this.httpClient.get<Room>(this.ROOMS_URL+id);
