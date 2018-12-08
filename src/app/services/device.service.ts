@@ -57,7 +57,6 @@ export class DeviceService {
   }
 
   openAllDevices(id: number): Observable<Device[]> {
-    var i;
     const url = `${this.ROOMS_URL}/${id}/open`;
     return this.httpClient.put<Device[]>(url,id);
   }

@@ -1,4 +1,4 @@
-<div *ngIf="room">
+<!-- <div *ngIf="room">
   <h2>{{ room.name }} Details</h2>
   <div> <span> id: </span> {{room.id}} </div>
     There Lies the Info of the Room
@@ -16,4 +16,36 @@
 
 <button class="btn btn-sm" (click)="openAllDevices()">Open All Devices</button> <br>
 <button class="btn btn-sm" (click)="closeAllDevices()">Close All Devices</button> <br>
-<button class="btn btn-sm" (click)="goBack()">go back</button>
+<button class="btn btn-sm" (click)="goBack()">go back</button> -->
+
+
+<div class="container">
+
+  <h3>{{ room.name }} Details</h3>
+
+  <div class="card-columns">
+      <div class="card border-dark mb-3" *ngFor="let device of devices">
+          <div class="card-header">{{device.type.name}}</div>
+          <img style="height: 200px; width: 80%; display: block; margin-left:auto; margin-right:auto ; margin-top: 5px;" src="/assets/images/{{device.type.name}}.png" />
+          <div class="card-body text-center">
+          <p class="card-text">{{device.name}} <br> STATUS:
+          <span style="color:green; font-weight: bold" *ngIf="device.status"> ON </span> <span  style="color:red; font-weight: bold" *ngIf="!device.status"> OFF </span></p>
+           
+          <button *ngIf="!device.status" class="btn btn-sm" (click)="openDevice(device.id)"> Open </button>
+          <button *ngIf="device.status" class="btn btn-sm" (click)="closeDevice(device.id)"> Close </button>
+            <!-- <input type="checkbox" name="isOn" [checked]="myStatus" (change)="toggle()" /> -->
+            
+            <!-- <label class="switch">
+              <input type="checkbox" name="isOn" [checked]="myStatus" (change)="toggle()"><input>
+              <span class="slider round"></span>
+            </label> -->
+            
+            
+            
+          </div>
+      </div>
+</div>
+<div *ngIf="devices.length>0">
+    <button class="btn btn-sm" (click)="openAllDevices()">Open All Devices</button> 
+    <button class="btn btn-sm" (click)="closeAllDevices()">Close All Devices</button> 
+</div>
