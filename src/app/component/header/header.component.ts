@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Device } from 'src/app/model/device';
-import { DeviceService } from 'src/app/service/device.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +8,13 @@ import { DeviceService } from 'src/app/service/device.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  devices: Device[];
 
-  constructor(private deviceService: DeviceService) { }
-  
-  getDevices(): void {
-    this.deviceService.getDevices()
-      .subscribe(devices => this.devices = devices);
+  constructor(private authService: AuthService) { }
+
+  getLogIn() {
+    return this.authService.getLoggedIn();
   }
 
   ngOnInit() {
-    this.getDevices();
   }
 }

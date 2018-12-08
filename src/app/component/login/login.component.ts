@@ -1,6 +1,7 @@
 import { Component }   from '@angular/core';
 import { Router }      from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../service/auth.service';
+import { FormGroup } from '@angular/forms';
  
 @Component({
   selector: 'app-login',
@@ -19,13 +20,13 @@ export class LoginComponent {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
  
-  login() {
+  login(username: string, password: string) {
     this.message = 'Trying to log in ...';
  
-    this.authService.login().subscribe(() => {
+    this.authService.login(username, password).subscribe(() => {
       this.setMessage();
       if (this.authService.isLoggedIn) {
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/crisis-center/admin';
+        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
         this.router.navigate([redirect]);
       }
     });

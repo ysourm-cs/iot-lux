@@ -14,7 +14,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './guards/auth.module';
 
 @NgModule({
   declarations: [

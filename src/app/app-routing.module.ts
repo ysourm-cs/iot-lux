@@ -6,35 +6,28 @@ import { DeviceDetailComponent } from './detail/device-detail/device-detail.comp
 import { RoomsComponent } from './component/rooms/rooms.component';
 import { RoomDetailComponent } from './detail/room-detail/room-detail.component';
 import { UserDetailComponent } from './detail/user-detail/user-detail.component';
-import { LoginComponent } from './auth/login/login.component';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
   {
     path: 'devices',
     component: DevicesComponent,
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        children: [
-          { path: ':id', component: DeviceDetailComponent }
-        ]
-      }
-    ]
+  },
+  { path: 'devices/:id',
+    component: DeviceDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rooms',
     component: RoomsComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        children: [
-          { path: ':id', component: RoomDetailComponent }
-        ]
-      }
-    ]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'rooms/:id',
+    component: RoomDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
