@@ -39,13 +39,4 @@ export class BasicAuthService {
     this.userStateService.setUser(null);
     this.userStateService.setToken(null);
   }
-
 }
-
-
-// this.httpClient.get<User>("http://localhost:8080/basicauth", {headers}).subscribe(
-//        result=> { let user : User = result; 
-//         this.userStateService.setUser(user);
-//         console.log("Found user : " + user.name);
-//       });
-//       return true;
