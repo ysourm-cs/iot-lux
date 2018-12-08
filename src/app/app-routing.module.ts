@@ -14,6 +14,7 @@ import { RoomsTopComponent } from './ui/rooms-top/rooms-top.component';
 import { RoomDetailComponent } from './ui/room-detail/room-detail.component';
 import { RoomAdminListComponent } from './ui/room-admin-list/room-admin-list.component';
 import { RoomAdminDetailComponent } from './ui/room-admin-detail/room-admin-detail.component';
+
 const routes: Routes = [
     { path:'', component : LoginComponent},
     { path:'login', component: LoginComponent},
