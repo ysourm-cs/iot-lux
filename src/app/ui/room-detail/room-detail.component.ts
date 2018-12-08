@@ -47,12 +47,12 @@ export class RoomDetailComponent implements OnInit {
 
   openDevice(id: number): void {
     this.deviceService.openDevice(id)
-      .subscribe(device => this.devices[id] = device);
+      .subscribe(device => this.devices[this.devices.findIndex(value => value.id == id)] = device);
   }
 
   closeDevice(id: number): void {
     this.deviceService.closeDevice(id)
-      .subscribe(device => this.devices[id] = device);
+      .subscribe(device => this.devices[this.devices.findIndex(value => value.id == id)] = device);
   }
 
   openAllDevices(): void {
